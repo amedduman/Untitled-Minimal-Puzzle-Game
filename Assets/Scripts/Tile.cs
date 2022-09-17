@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[SelectionBase]
 public class Tile : MonoBehaviour
 {
     public SpriteRenderer TileSpriteRenderer;
