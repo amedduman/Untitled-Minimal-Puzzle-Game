@@ -4,6 +4,7 @@ public class GridGenerator : MonoBehaviour
 {
 	[SerializeField] Camera gameCam;
 	[SerializeField] Tile tilePrefab;
+	[SerializeField] float _tilesPosOnZAxis;
 	[SerializeField] int xSize = 8;
 	[SerializeField] int ySize = 8;
 	
@@ -29,7 +30,7 @@ public class GridGenerator : MonoBehaviour
         pos.x -= Mathf.Abs(gridWidth / 2);
         pos.x += offset.x / 2;
 
-        pos.z = 0;
+        pos.z = _tilesPosOnZAxis;
         
         transform.position = pos;
 
