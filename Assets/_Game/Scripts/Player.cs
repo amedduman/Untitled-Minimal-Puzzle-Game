@@ -8,11 +8,18 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float _speed = 4;
 
+    Tweener _moveTweener;
+
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
             Move();
+        }
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            Stop();
         }
     }
 
@@ -22,9 +29,14 @@ public class Player : MonoBehaviour
         var nextTile = GetNextTile(currentTile);
         if(nextTile != null)
         {
-            transform.DOMove(nextTile.transform.position, _speed).SetSpeedBased().OnComplete(Move).SetEase(Ease.Linear);
+            _moveTweener = transform.DOMove(nextTile.transform.position, _speed).SetSpeedBased().OnComplete(Move).SetEase(Ease.Linear);
         }
 
+    }
+
+    void Stop()
+    {
+        _moveTweener.Kill();
     }
 
     Tile GetCurrentTilePlayerOn()
