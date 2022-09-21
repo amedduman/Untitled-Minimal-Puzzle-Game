@@ -1,18 +1,60 @@
 using System;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+using Sirenix.OdinInspector;
 
 [SelectionBase]
 public class Tile : MonoBehaviour
 {
+    public TileType _tileType = TileType.Empty;
     public SpriteRenderer TileSpriteRenderer;
     [HideInInspector] public int tileIdX;
     [HideInInspector] public int tileIdY;
-   
+
     [HideInInspector] public Tile rightNeighbor;
     [HideInInspector] public Tile leftNeighbor;
     [HideInInspector] public Tile upNeighbor;
     [HideInInspector] public Tile downNeighbor;
-    
+
+    [ReadOnly] [SerializeField] TileFeature _tileFeature = null; 
+
+    #if UNITY_EDITOR
+    [Button] 
+    void ChangeType()
+    {
+        switch (_tileType)
+        {
+            case TileType.Empty:
+                if (_tileFeature != null)
+                {
+                    DestroyImmediate(_tileFeature);
+                    _tileFeature = null;
+                }
+                break;
+            case TileType.TurnPoint: 
+                if (_tileFeature != null)
+                {
+                    DestroyImmediate(_tileFeature);
+                    _tileFeature = AddComponentViaEditor<TurnPoint>();
+                }
+                else
+                { 
+                    _tileFeature = AddComponentViaEditor<TurnPoint>(); 
+                }
+                break;
+            default:
+                throw new System.NotImplementedException();
+        }
+    }
+
+    T AddComponentViaEditor<T>() where T : TileFeature
+    {
+        // with gameObject.AddComponent() the presets will not work.
+        return ObjectFactory.AddComponent<T>(gameObject);  
+    }
+    #endif
 
     public void SetNeighbors(Tile[,] tiles)
     {
@@ -25,7 +67,7 @@ public class Tile : MonoBehaviour
         {
             rightNeighbor = null;
         }
-        
+
         // left neighbor
         try
         {
@@ -35,7 +77,7 @@ public class Tile : MonoBehaviour
         {
             leftNeighbor = null;
         }
-        
+
         // up neighbor
         try
         {
@@ -45,7 +87,7 @@ public class Tile : MonoBehaviour
         {
             upNeighbor = null;
         }
-        
+
         // down neighbor
         try
         {
@@ -55,5 +97,13 @@ public class Tile : MonoBehaviour
         {
             downNeighbor = null;
         }
+
+
+    }
+
+    public enum TileType
+    {
+        Empty,
+        TurnPoint,
     }
 }
