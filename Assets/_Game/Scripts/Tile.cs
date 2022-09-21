@@ -18,43 +18,44 @@ public class Tile : MonoBehaviour
     [HideInInspector] public Tile upNeighbor;
     [HideInInspector] public Tile downNeighbor;
 
-    [ReadOnly] [SerializeField] TileFeature _tileFeature = null; 
+    [ReadOnly][SerializeField] TileFeature _tileFeature = null;
 
-    #if UNITY_EDITOR
-    [Button] 
+#if UNITY_EDITOR
+    [Button]
     void ChangeType()
     {
         switch (_tileType)
         {
             case TileType.Empty:
-                if (_tileFeature != null)
-                {
-                    DestroyImmediate(_tileFeature);
-                    _tileFeature = null;
-                }
+                ChangeTile<EmptyTile>();
                 break;
-            case TileType.TurnPoint: 
-                if (_tileFeature != null)
-                {
-                    DestroyImmediate(_tileFeature);
-                    _tileFeature = AddComponentViaEditor<TurnPoint>();
-                }
-                else
-                { 
-                    _tileFeature = AddComponentViaEditor<TurnPoint>(); 
-                }
+            case TileType.TurnPoint:
+                ChangeTile<TurnPoint>();
                 break;
             default:
                 throw new System.NotImplementedException();
         }
     }
 
+    void ChangeTile<T>() where T : TileFeature
+    {
+        if (_tileFeature != null)
+        {
+            DestroyImmediate(_tileFeature);
+            _tileFeature = AddComponentViaEditor<T>();
+        }
+        else
+        {
+            _tileFeature = AddComponentViaEditor<T>();
+        }
+    }
+
     T AddComponentViaEditor<T>() where T : TileFeature
     {
         // with gameObject.AddComponent() the presets will not work.
-        return ObjectFactory.AddComponent<T>(gameObject);  
+        return ObjectFactory.AddComponent<T>(gameObject);
     }
-    #endif
+#endif
 
     public void SetNeighbors(Tile[,] tiles)
     {

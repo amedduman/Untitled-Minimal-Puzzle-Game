@@ -181,17 +181,35 @@ PrefabInstance:
     - target: {fileID: 3030107483452391565, guid: f2a45490a3901424fad5da0254778b72, type: 3}
       propertyPath: _tileFeature
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 394966970}
     - target: {fileID: 3957852986398521563, guid: f2a45490a3901424fad5da0254778b72, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2831b7306e31c4e059314e5e27dd9fe3, type: 3}
+      objectReference: {fileID: 21300000, guid: 4e68116ba9e4b4e78933c23391273f92, type: 3}
     - target: {fileID: 7318001107227336346, guid: f2a45490a3901424fad5da0254778b72, type: 3}
       propertyPath: m_Name
       value: Tile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2a45490a3901424fad5da0254778b72, type: 3}
+--- !u!1 &394966969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7318001107227336346, guid: f2a45490a3901424fad5da0254778b72, type: 3}
+  m_PrefabInstance: {fileID: 394966968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &394966970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394966969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ddbdf961f4854562a4af12d1ce109be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: 4e68116ba9e4b4e78933c23391273f92, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
