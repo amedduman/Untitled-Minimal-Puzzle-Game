@@ -1,4 +1,5 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class GridGenerator : MonoBehaviour 
 {
@@ -10,7 +11,8 @@ public class GridGenerator : MonoBehaviour
 	
 	Tile[,] tiles;
 
-	void Start () 
+	[PropertySpace] [Button]
+	void GenerateGrid () 
 	{
 		tiles = new Tile[xSize, ySize];
 		
@@ -67,5 +69,13 @@ public class GridGenerator : MonoBehaviour
 	{
 		tile.gameObject.name = $"Tile ({x + 1},{y + 1})";
 	}
-}
 
+	[PropertySpace] [Button]
+    void DestroyGrid()
+	{
+		for (int i = transform.childCount - 1; i >= 0; i--)
+		{
+			DestroyImmediate(transform.GetChild(i).gameObject);
+		}	
+	}
+}
