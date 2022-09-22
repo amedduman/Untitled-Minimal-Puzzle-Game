@@ -15,12 +15,12 @@ public class Player : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Move();
+            TryChangeDirection();
         }
 
         if(Input.GetMouseButtonDown(1))
         {
-            Stop();
+            Move();
         }
     }
 
@@ -35,9 +35,27 @@ public class Player : MonoBehaviour
 
     }
 
+    void Turn(Vector3 dir)
+    {
+        Stop();
+        transform.up = dir;
+        Move();
+    }
+
     void Stop()
     {
         _moveTweener.Kill();
+    }
+
+    void TryChangeDirection()
+    {
+        var tile = GetCurrentTilePlayerOn();
+
+        if(tile.TryGetComponent(out TurnPoint turnPoint))
+        {
+            Vector3 dir = turnPoint.GetTurnDirection(transform);
+            Turn(dir);
+        }
     }
 
     Tile GetCurrentTilePlayerOn()
@@ -46,7 +64,6 @@ public class Player : MonoBehaviour
 
         if(hit.collider != null)
         {
-            Debug.Log(hit.collider.transform.parent.name);
             var go = hit.collider.gameObject;
             var tile = go.GetComponentInParent<Tile>();
             return tile;
