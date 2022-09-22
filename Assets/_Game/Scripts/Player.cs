@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 
 public class Player : MonoBehaviour
 {
@@ -51,8 +52,7 @@ public class Player : MonoBehaviour
             return tile;
         }
         Debug.LogError("There is an error while getting Current Tile.");
-        Debug.Break();
-        return null;
+        throw new System.NotImplementedException();
     }
 
     Tile GetNextTile(Tile currentTile)
@@ -86,5 +86,13 @@ public class Player : MonoBehaviour
             Debug.Break();
             return null;
         }
+    }
+
+    [PropertySpace] [Button]
+    void SetPlayerTile()
+    {
+        var tile = GetCurrentTilePlayerOn();
+
+        transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, transform.position.z);
     }
 }
