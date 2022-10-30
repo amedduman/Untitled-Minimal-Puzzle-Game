@@ -1,62 +1,22 @@
 using System;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-using Sirenix.OdinInspector;
 
 [SelectionBase]
-public class Tile : MonoBehaviour
+public abstract class Tile : MonoBehaviour
 {
-    public TileType _tileType = TileType.Empty;
-    public SpriteRenderer TileSpriteRenderer;
     [HideInInspector] public int tileIdX;
     [HideInInspector] public int tileIdY;
 
-    [HideInInspector] public Tile rightNeighbor;
-    [HideInInspector] public Tile leftNeighbor;
-    [HideInInspector] public Tile upNeighbor;
-    [HideInInspector] public Tile downNeighbor;
+     public Tile rightNeighbor;
+     public Tile leftNeighbor;
+     public Tile upNeighbor;
+     public Tile downNeighbor;
 
-    [ReadOnly][SerializeField] TileFeature _tileFeature = null;
-
-#if UNITY_EDITOR
-    [Button]
-    void ChangeType()
-    {
-        switch (_tileType)
-        {
-            case TileType.Empty:
-                ChangeTile<EmptyTile>();
-                break;
-            case TileType.TurnPoint:
-                ChangeTile<TurnPoint>();
-                break;
-            default:
-                throw new System.NotImplementedException();
-        }
-    }
-
-    void ChangeTile<T>() where T : TileFeature
-    {
-        if (_tileFeature != null)
-        {
-            DestroyImmediate(_tileFeature);
-            _tileFeature = AddComponentViaEditor<T>();
-        }
-        else
-        {
-            _tileFeature = AddComponentViaEditor<T>();
-        }
-    }
-
-    T AddComponentViaEditor<T>() where T : TileFeature
-    {
-        // with gameObject.AddComponent() the presets will not work.
-        return ObjectFactory.AddComponent<T>(gameObject);
-    }
-#endif
-
+     public void SetNeighborsNewMethod()
+     {
+         // raycast to find out neighbours...
+     }
+     
     public void SetNeighbors(Tile[,] tiles)
     {
         // right neighbor
@@ -98,13 +58,5 @@ public class Tile : MonoBehaviour
         {
             downNeighbor = null;
         }
-
-
-    }
-
-    public enum TileType
-    {
-        Empty,
-        TurnPoint,
     }
 }

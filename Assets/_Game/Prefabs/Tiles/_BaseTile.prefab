@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4e68116ba9e4b4e78933c23391273f92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4983d2c94d1514992a99d207c2e241e7, type: 3}
   m_Color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,10 +120,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 495375394098500013}
-  - component: {fileID: 3030107483452391565}
-  - component: {fileID: 177880392737076164}
   m_Layer: 0
-  m_Name: Tile
+  m_Name: _BaseTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,37 +143,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3030107483452391565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7318001107227336346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7b9656d73b641f68aa2644adfc696e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tileType: 0
-  TileSpriteRenderer: {fileID: 3957852986398521563}
-  tileIdX: 0
-  tileIdY: 0
-  rightNeighbor: {fileID: 0}
-  leftNeighbor: {fileID: 0}
-  upNeighbor: {fileID: 0}
-  downNeighbor: {fileID: 0}
-  _tileFeature: {fileID: 177880392737076164}
---- !u!114 &177880392737076164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7318001107227336346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ddbdf961f4854562a4af12d1ce109be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 4e68116ba9e4b4e78933c23391273f92, type: 3}

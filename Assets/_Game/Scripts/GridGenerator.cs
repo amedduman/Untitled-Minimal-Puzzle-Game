@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEditor;
 using Sirenix.OdinInspector;
 
 public class GridGenerator : MonoBehaviour 
@@ -10,14 +12,15 @@ public class GridGenerator : MonoBehaviour
 	[SerializeField] int ySize = 8;
 	
 	Tile[,] tiles;
-
+#if UNITY_EDITOR
+	
 	[PropertySpace] [Button]
 	void GenerateGrid () 
 	{
 		tiles = new Tile[xSize, ySize];
 		
 		// calculate needed distance between tiles
-		Vector2 offset = tilePrefab.TileSpriteRenderer.bounds.size;
+		Vector2 offset = tilePrefab.GetComponentInChildren<SpriteRenderer>().bounds.size;
 		
 		// calculate grid size
 		float gridWidth = offset.x * xSize;
@@ -41,7 +44,7 @@ public class GridGenerator : MonoBehaviour
 		{
 			for (int j = 0; j < ySize; j++) 
 			{
-				Tile tile = Instantiate(tilePrefab, transform);
+				Tile tile = PrefabUtility.InstantiatePrefab(tilePrefab, transform) as Tile ;
 
                 tile.transform.localPosition = new Vector3(offset.x * i, offset.y * j, 0);
 
@@ -53,11 +56,21 @@ public class GridGenerator : MonoBehaviour
 			}
         }
 
-		foreach (var tile in tiles)
-		{
-			tile.SetNeighbors(tiles);
-		}
+		// foreach (var tile in tiles)
+		// {
+		// 	tile.SetNeighbors(tiles);
+		// }
     }
+#endif
+
+	private void Start()
+	{
+		for (int i = 0; i < transform.childCount; i++)
+		{
+			Tile tile = transform.GetChild(i).GetComponent<Tile>();
+			tile.SetNeighborsNewMethod();
+		}
+	}
 
 	void SetTileIds(Tile tile, int x, int y)
 	{
