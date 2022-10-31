@@ -12,24 +12,31 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             TryChangeDirection();
         }
 
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
             Move();
         }
     }
 
-    void Move() 
+    void Move()
     {
         var currentTile = GetCurrentTilePlayerOn();
         var nextTile = GetNextTile(currentTile);
-        if(nextTile != null)
+        if (nextTile != null)
         {
             _moveTweener = transform.DOMove(nextTile.transform.position, _speed).SetSpeedBased().OnComplete(Move).SetEase(Ease.Linear);
+        }
+        else
+        {
+            Vector3 rot = transform.rotation.eulerAngles;
+            rot.z -= 180;
+            transform.DORotate(rot, .3f).OnComplete(Move);
+            
         }
 
     }
@@ -50,7 +57,7 @@ public class Player : MonoBehaviour
     {
         var tile = GetCurrentTilePlayerOn();
 
-        if(tile.TryGetComponent(out TurnPoint turnPoint))
+        if (tile.TryGetComponent(out TurnPoint turnPoint))
         {
             Vector3 dir = turnPoint.GetTurnDirection(transform);
             Turn(dir);
@@ -61,7 +68,7 @@ public class Player : MonoBehaviour
     {
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward);
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
             var go = hit.collider.gameObject;
             var tile = go.GetComponentInParent<Tile>();
@@ -75,16 +82,16 @@ public class Player : MonoBehaviour
     {
         var worldUp = Vector3.up;
         var worldDown = Vector3.down;
-        var  worldRight = Vector3.right;
+        var worldRight = Vector3.right;
         var worldLeft = Vector3.left;
 
         var playerUp = transform.up;
 
-        if(playerUp == worldUp)
+        if (playerUp == worldUp)
         {
             return currentTile.upNeighbor;
         }
-        else if(playerUp == worldDown)
+        else if (playerUp == worldDown)
         {
             return currentTile.downNeighbor;
         }
@@ -104,7 +111,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    [PropertySpace] [Button]
+    [PropertySpace]
+    [Button]
     void SetPlayerTile()
     {
         var tile = GetCurrentTilePlayerOn();
