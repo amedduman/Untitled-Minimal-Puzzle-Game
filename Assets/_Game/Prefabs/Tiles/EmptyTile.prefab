@@ -74,7 +74,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddbdf961f4854562a4af12d1ce109be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileSpriteRenderer: {fileID: 0}
+  _layerToRaycast:
+    serializedVersion: 2
+    m_Bits: 64
   tileIdX: 0
   tileIdY: 0
   rightNeighbor: {fileID: 0}

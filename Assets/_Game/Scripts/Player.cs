@@ -8,6 +8,7 @@ using Sirenix.OdinInspector;
 public class Player : MonoBehaviour
 {
     [SerializeField] float _speed = 4;
+    [SerializeField] LayerMask _layerToRaycast;
     Tweener _moveTweener;
 
     void Update()
@@ -48,7 +49,7 @@ public class Player : MonoBehaviour
         Move();
     }
 
-    void Stop()
+    public void Stop()
     {
         _moveTweener.Kill();
     }
@@ -66,8 +67,10 @@ public class Player : MonoBehaviour
 
     Tile GetCurrentTilePlayerOn()
     {
+        // other wise raycast is not going to detect tile
         Physics2D.queriesStartInColliders = true;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward);
+        
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward, 1, _layerToRaycast);
         if (hit.collider != null)
         {
             var go = hit.collider.gameObject;

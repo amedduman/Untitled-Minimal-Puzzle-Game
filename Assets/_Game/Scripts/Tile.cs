@@ -1,16 +1,19 @@
 using System;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [SelectionBase]
 public abstract class Tile : MonoBehaviour
 {
+    [SerializeField] LayerMask _layerToRaycast;
+
     [HideInInspector] public int tileIdX;
     [HideInInspector] public int tileIdY;
 
-    public Tile rightNeighbor;
-    public Tile leftNeighbor;
-    public Tile upNeighbor;
-    public Tile downNeighbor;
+    [ReadOnly] public Tile rightNeighbor;
+    [ReadOnly] public Tile leftNeighbor;
+    [ReadOnly] public Tile upNeighbor;
+    [ReadOnly] public Tile downNeighbor;
 
     void Awake()
     {
@@ -28,7 +31,7 @@ public abstract class Tile : MonoBehaviour
 
     Tile RaycastToNeighbor(Vector2 dir)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 1, _layerToRaycast);
         Debug.DrawRay(transform.position, dir, Color.red, 5);
         if (hit.collider != null)
         {
