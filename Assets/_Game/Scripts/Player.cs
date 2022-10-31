@@ -8,7 +8,6 @@ using Sirenix.OdinInspector;
 public class Player : MonoBehaviour
 {
     [SerializeField] float _speed = 4;
-
     Tweener _moveTweener;
 
     void Update()
@@ -60,8 +59,8 @@ public class Player : MonoBehaviour
 
     Tile GetCurrentTilePlayerOn()
     {
+        Physics2D.queriesStartInColliders = true;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward);
-
         if(hit.collider != null)
         {
             var go = hit.collider.gameObject;

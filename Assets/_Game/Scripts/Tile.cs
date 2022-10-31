@@ -7,56 +7,33 @@ public abstract class Tile : MonoBehaviour
     [HideInInspector] public int tileIdX;
     [HideInInspector] public int tileIdY;
 
-     public Tile rightNeighbor;
-     public Tile leftNeighbor;
-     public Tile upNeighbor;
-     public Tile downNeighbor;
+    public Tile rightNeighbor;
+    public Tile leftNeighbor;
+    public Tile upNeighbor;
+    public Tile downNeighbor;
 
-     public void SetNeighborsNewMethod()
-     {
-         // raycast to find out neighbours...
-     }
-     
-    public void SetNeighbors(Tile[,] tiles)
+    void Awake()
     {
-        // right neighbor
-        try
-        {
-            rightNeighbor = tiles[tileIdX + 1, tileIdY];
-        }
-        catch (IndexOutOfRangeException)
-        {
-            rightNeighbor = null;
-        }
+        // to prevent raycast detect object's collider.
+        Physics2D.queriesStartInColliders = false;
+    }
 
-        // left neighbor
-        try
-        {
-            leftNeighbor = tiles[tileIdX - 1, tileIdY];
-        }
-        catch (IndexOutOfRangeException)
-        {
-            leftNeighbor = null;
-        }
+    public void SetNeighborsNewMethod()
+    {
+        upNeighbor = RaycastToNeighbor(Vector2.up);
+        downNeighbor = RaycastToNeighbor(Vector2.down);
+        rightNeighbor = RaycastToNeighbor(Vector2.right);
+        leftNeighbor = RaycastToNeighbor(Vector2.left);
+    }
 
-        // up neighbor
-        try
+    Tile RaycastToNeighbor(Vector2 dir)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
+        Debug.DrawRay(transform.position, dir, Color.red, 5);
+        if (hit.collider != null)
         {
-            upNeighbor = tiles[tileIdX, tileIdY + 1];
+            return hit.collider.transform.parent.gameObject.GetComponent<Tile>();    
         }
-        catch (IndexOutOfRangeException)
-        {
-            upNeighbor = null;
-        }
-
-        // down neighbor
-        try
-        {
-            downNeighbor = tiles[tileIdX, tileIdY - 1];
-        }
-        catch (IndexOutOfRangeException)
-        {
-            downNeighbor = null;
-        }
+        return null;
     }
 }
