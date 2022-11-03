@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using DG.Tweening;
 
 [SelectionBase]
 public abstract class Tile : MonoBehaviour
@@ -19,6 +20,11 @@ public abstract class Tile : MonoBehaviour
     {
         // to prevent raycast detect object's collider.
         Physics2D.queriesStartInColliders = false;
+    }
+
+    public virtual Tweener React(Player player, Action funcToCall)
+    {
+        return player.transform.DOMove(transform.position, player.Speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(()=>funcToCall());
     }
 
     public void SetNeighborsNewMethod()

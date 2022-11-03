@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float _speed = 4;
+    public float Speed = 4;
     [SerializeField] LayerMask _layerToRaycast;
     Tweener _moveTweener;
     bool _firstTap = true;
@@ -26,21 +26,26 @@ public class Player : MonoBehaviour
                 TryChangeDirection();
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Stop();
+        }
     }
 
     void Move()
     {
         var currentTile = GetCurrentTilePlayerOn();
         var nextTile = GetNextTile(currentTile);
-        if (nextTile != null && nextTile is not BlockTile)
+        if (nextTile != null)
         {
-            _moveTweener = transform.DOMove(nextTile.transform.position, _speed).SetSpeedBased().OnComplete(Move).SetEase(Ease.Linear);
+            _moveTweener = nextTile.React(this, Move);
+            // _moveTweener = transform.DOMove(nextTile.transform.position, _speed).SetSpeedBased().OnComplete(Move).SetEase(Ease.Linear);
         }
         else
         {
             Reflect();
         }
-
     }
 
     public void Reflect()
