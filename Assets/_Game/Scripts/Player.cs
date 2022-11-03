@@ -10,17 +10,21 @@ public class Player : MonoBehaviour
     [SerializeField] float _speed = 4;
     [SerializeField] LayerMask _layerToRaycast;
     Tweener _moveTweener;
+    bool _firstTap = true;
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            TryChangeDirection();
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            Move();
+            if (_firstTap)
+            {
+                Move();
+                _firstTap = false;
+            }
+            else
+            {
+                TryChangeDirection();
+            }
         }
     }
 
@@ -28,18 +32,22 @@ public class Player : MonoBehaviour
     {
         var currentTile = GetCurrentTilePlayerOn();
         var nextTile = GetNextTile(currentTile);
-        if (nextTile != null)
+        if (nextTile != null && nextTile is not BlockTile)
         {
             _moveTweener = transform.DOMove(nextTile.transform.position, _speed).SetSpeedBased().OnComplete(Move).SetEase(Ease.Linear);
         }
         else
         {
-            Vector3 rot = transform.rotation.eulerAngles;
-            rot.z -= 180;
-            transform.DORotate(rot, .3f).OnComplete(Move);
-            
+            Reflect();
         }
 
+    }
+
+    public void Reflect()
+    {
+        Vector3 rot = transform.rotation.eulerAngles;
+        rot.z -= 180;
+        transform.DORotate(rot, .3f).OnComplete(Move);
     }
 
     void Turn(Vector3 dir)
@@ -69,7 +77,7 @@ public class Player : MonoBehaviour
     {
         // other wise raycast is not going to detect tile
         Physics2D.queriesStartInColliders = true;
-        
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward, 1, _layerToRaycast);
         if (hit.collider != null)
         {

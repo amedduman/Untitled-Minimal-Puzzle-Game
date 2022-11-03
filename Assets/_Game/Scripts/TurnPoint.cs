@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TurnPoint : Tile
 {
+    // change this logic. add two objects for 
     public Vector3 GetTurnDirection(Transform player)
     {
         var playerUp = player.up;

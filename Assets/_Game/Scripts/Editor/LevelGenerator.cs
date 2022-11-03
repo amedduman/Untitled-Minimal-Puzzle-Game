@@ -7,6 +7,7 @@ public enum TileTypeE
     TurnPoint,
     FinishTile,
     HazardTile,
+    BlockTile,
 }
 
 public class LevelGenerator : EditorWindow
@@ -16,6 +17,7 @@ public class LevelGenerator : EditorWindow
     public Object TurnPointPrefab;
     public Object FinishTilePrefab;
     public Object HazardTilePrefab;
+    public Object BlockTilePrefab;
 
     int TurnPointRotVal = 1;
 
@@ -38,7 +40,7 @@ public class LevelGenerator : EditorWindow
         }
 
         EditorGUILayout.Space(30);
-
+        
         // empty tile prefab field
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("empty tile", EditorStyles.boldLabel);
@@ -57,10 +59,16 @@ public class LevelGenerator : EditorWindow
         FinishTilePrefab = EditorGUILayout.ObjectField(FinishTilePrefab, typeof(Object), true);
         EditorGUILayout.EndHorizontal();
 
-        // finish tile prefab field
+        // hazard tile prefab field
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("hazard tile", EditorStyles.boldLabel);
         HazardTilePrefab = EditorGUILayout.ObjectField(HazardTilePrefab, typeof(Object), true);
+        EditorGUILayout.EndHorizontal();
+
+        // block tile prefab field
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("block tile", EditorStyles.boldLabel);
+        BlockTilePrefab = EditorGUILayout.ObjectField(BlockTilePrefab, typeof(Object), true);
         EditorGUILayout.EndHorizontal();
 
         GameObject obj = Selection.activeGameObject;
@@ -126,6 +134,9 @@ public class LevelGenerator : EditorWindow
                 break;
                 case TileTypeE.HazardTile:
                 tile = PrefabUtility.InstantiatePrefab(HazardTilePrefab, parent) as GameObject;
+                break;
+                case TileTypeE.BlockTile:
+                tile = PrefabUtility.InstantiatePrefab(BlockTilePrefab, parent) as GameObject;
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException(nameof(tileTypeE), tileTypeE, null);

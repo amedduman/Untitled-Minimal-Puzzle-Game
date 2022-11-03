@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 7ef9d2bcf90eb40a38dd99a9d4d373ba, type: 3}
-  m_Color: {r: 0.8392157, g: 0.35363364, b: 0.3490196, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7318001107227336346, guid: f2a45490a3901424fad5da0254778b72, type: 3}
       propertyPath: m_Name
-      value: HazardTile
+      value: BlockTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2a45490a3901424fad5da0254778b72, type: 3}
@@ -176,7 +176,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5472242850410514962
+--- !u!114 &7947754085760058325
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7116367345708018504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0c14c6b684224c6b9cf04b581865308, type: 3}
+  m_Script: {fileID: 11500000, guid: 192d618902ee54d8c8bad39cb3811d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _layerToRaycast:
