@@ -14,8 +14,9 @@ public class LevelGenerator : EditorWindow
     public Object EmptyTilePrefab;
     public Object TurnPointPrefab;
     public Object FinishTilePrefab;
-    
-    // Add menu named "My Window" to the Window menu
+
+    int TurnPointRotVal = 1;
+
     [MenuItem("Game/Level Generator")]
     static void Init()
     {
@@ -26,14 +27,14 @@ public class LevelGenerator : EditorWindow
     void OnGUI()
     {
         MyTileType = (TileTypeE)EditorGUILayout.EnumPopup("Primitive to create:", MyTileType);
-        
+
         EditorGUILayout.Space(10);
-        
+
         if (GUILayout.Button("Change"))
         {
             InstantiateTilePrefab(MyTileType);
         }
-        
+
         EditorGUILayout.Space(30);
 
         // empty tile prefab field
@@ -41,7 +42,7 @@ public class LevelGenerator : EditorWindow
         GUILayout.Label("empty tile", EditorStyles.boldLabel);
         EmptyTilePrefab = EditorGUILayout.ObjectField(EmptyTilePrefab, typeof(Object), true);
         EditorGUILayout.EndHorizontal();
-        
+
         // turn point prefab field
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("turn point", EditorStyles.boldLabel);
@@ -53,24 +54,57 @@ public class LevelGenerator : EditorWindow
         GUILayout.Label("finish tile", EditorStyles.boldLabel);
         FinishTilePrefab = EditorGUILayout.ObjectField(FinishTilePrefab, typeof(Object), true);
         EditorGUILayout.EndHorizontal();
+
+        GameObject obj = Selection.activeGameObject;
+        if (obj != null)
+        {
+            if (obj.TryGetComponent(out TurnPoint tp))
+            {
+                EditorGUILayout.Space(15);
+                EditorGUILayout.BeginHorizontal();
+                TurnPointRotVal = EditorGUILayout.IntSlider(TurnPointRotVal, 1, 4);
+                float angle = 0;
+                switch (TurnPointRotVal)
+                {
+                    case 1:
+                    angle = 0;
+                    break;
+                    case 2:
+                    angle = 90;
+                    break;
+                    case 3:
+                    angle = 180;
+                    break;
+                    case 4:
+                    angle = 270;
+                    break;
+                    default:
+                    Debug.LogError($"There is an error with level generator.");
+                    break;
+                }
+                tp.transform.localRotation = Quaternion.Euler(0,0,angle);
+                EditorGUILayout.EndHorizontal();
+            }
+        }
+
     }
 
 
     void InstantiateTilePrefab(TileTypeE tileTypeE)
     {
         GameObject obj = Selection.activeGameObject;
-        
+
         if (obj == null) return;
         if (obj.GetComponent<Tile>() == null) return;
         if (EmptyTilePrefab == null) return;
         if (TurnPointPrefab == null) return;
-        
+
         Vector3 pos = obj.transform.position;
         Transform parent = obj.transform.parent;
         string tileName = obj.name;
         DestroyImmediate(obj);
-        GameObject tile  = null;
-        
+        GameObject tile = null;
+
         switch (tileTypeE)
         {
             case TileTypeE.Empty:
@@ -79,7 +113,7 @@ public class LevelGenerator : EditorWindow
             case TileTypeE.TurnPoint:
                 tile = PrefabUtility.InstantiatePrefab(TurnPointPrefab, parent) as GameObject;
                 break;
-                case TileTypeE.FinishTile:
+            case TileTypeE.FinishTile:
                 tile = PrefabUtility.InstantiatePrefab(FinishTilePrefab, parent) as GameObject;
                 break;
             default:
