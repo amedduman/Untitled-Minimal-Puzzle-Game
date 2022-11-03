@@ -6,6 +6,7 @@ public enum TileTypeE
     Empty,
     TurnPoint,
     FinishTile,
+    HazardTile,
 }
 
 public class LevelGenerator : EditorWindow
@@ -14,6 +15,7 @@ public class LevelGenerator : EditorWindow
     public Object EmptyTilePrefab;
     public Object TurnPointPrefab;
     public Object FinishTilePrefab;
+    public Object HazardTilePrefab;
 
     int TurnPointRotVal = 1;
 
@@ -53,6 +55,12 @@ public class LevelGenerator : EditorWindow
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("finish tile", EditorStyles.boldLabel);
         FinishTilePrefab = EditorGUILayout.ObjectField(FinishTilePrefab, typeof(Object), true);
+        EditorGUILayout.EndHorizontal();
+
+        // finish tile prefab field
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("hazard tile", EditorStyles.boldLabel);
+        HazardTilePrefab = EditorGUILayout.ObjectField(HazardTilePrefab, typeof(Object), true);
         EditorGUILayout.EndHorizontal();
 
         GameObject obj = Selection.activeGameObject;
@@ -115,6 +123,9 @@ public class LevelGenerator : EditorWindow
                 break;
             case TileTypeE.FinishTile:
                 tile = PrefabUtility.InstantiatePrefab(FinishTilePrefab, parent) as GameObject;
+                break;
+                case TileTypeE.HazardTile:
+                tile = PrefabUtility.InstantiatePrefab(HazardTilePrefab, parent) as GameObject;
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException(nameof(tileTypeE), tileTypeE, null);
