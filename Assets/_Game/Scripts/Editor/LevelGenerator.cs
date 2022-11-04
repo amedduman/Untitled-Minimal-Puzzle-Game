@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 
 public enum TileTypeE
 {
@@ -144,5 +145,7 @@ public class LevelGenerator : EditorWindow
 
         tile.transform.position = pos;
         tile.gameObject.name = tileName;
+
+        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
     }
 }
