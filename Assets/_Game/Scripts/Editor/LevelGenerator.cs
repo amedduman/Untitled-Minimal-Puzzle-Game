@@ -31,7 +31,7 @@ public class LevelGenerator : EditorWindow
 
     void OnGUI()
     {
-        MyTileType = (TileTypeE)EditorGUILayout.EnumPopup("Primitive to create:", MyTileType);
+        MyTileType = (TileTypeE)EditorGUILayout.EnumPopup("Tile to create:", MyTileType);
 
         EditorGUILayout.Space(10);
 

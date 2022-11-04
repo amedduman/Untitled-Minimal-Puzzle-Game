@@ -38,7 +38,7 @@ public abstract class Tile : MonoBehaviour
     Tile RaycastToNeighbor(Vector2 dir)
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 1, _layerToRaycast);
-        Debug.DrawRay(transform.position, dir, Color.red, 5);
+        // Debug.DrawRay(transform.position, dir, Color.red, 5);
         if (hit.collider != null)
         {
             return hit.collider.transform.parent.gameObject.GetComponent<Tile>();    
