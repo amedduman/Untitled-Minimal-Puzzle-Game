@@ -1,4 +1,5 @@
 using UnityEngine;
+using AD.Utils.Math;
 
 public class TurnPoint : Tile
 {
@@ -37,11 +38,11 @@ public class TurnPoint : Tile
         float firstDot = Vector3.Dot(firstDir, playerDir);
         float secondDot = Vector3.Dot(secondDir, playerDir);
 
-        if(CloseTo(0, firstDot, .5f))
+        if(AD_MathUtils.CloseTo(0, firstDot, .5f))
         {
             return firstDir;
         }
-        else if(CloseTo(0, secondDot, .5f))
+        else if(AD_MathUtils.CloseTo(0, secondDot, .5f))
         {
             return secondDir;
         }
@@ -51,15 +52,15 @@ public class TurnPoint : Tile
         throw new System.NotImplementedException();
     }
 
-    bool CloseTo(float val1, float val2, float margin)
-    {
-        val1 = Mathf.Abs(val1);
-        val2 = Mathf.Abs(val2);
+    // bool CloseTo(float val1, float val2, float margin)
+    // {
+    //     val1 = Mathf.Abs(val1);
+    //     val2 = Mathf.Abs(val2);
 
-        float diff = val1 - val2;
+    //     float diff = val1 - val2;
 
-        diff = Mathf.Abs(diff);
+    //     diff = Mathf.Abs(diff);
 
-        return diff <= margin;
-    }
+    //     return diff <= margin;
+    // }
 }
