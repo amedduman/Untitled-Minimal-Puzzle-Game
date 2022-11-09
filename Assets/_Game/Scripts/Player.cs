@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using AD.Utils.Math;
+using amed.utils.math;
 using Sirenix.OdinInspector;
 
 public class Player : MonoBehaviour
@@ -36,6 +36,13 @@ public class Player : MonoBehaviour
         {
             Stop();
         }
+    }
+
+    public bool IsThisTileNext(Tile tile)
+    {
+        Tile currentTile = GetCurrentTilePlayerOn();
+        Tile nextTile = GetNextTile(currentTile);
+        return tile == nextTile;
     }
 
     public void Move()
@@ -77,8 +84,8 @@ public class Player : MonoBehaviour
 
         if (tile.TryGetComponent(out TurnPoint turnPoint))
         {
-            Vector3 dir = turnPoint.GetTurnDirection(transform);
-            Turn(dir);
+            var turnInfo = turnPoint.GetTurnInfo(transform);
+            Turn(turnInfo.Dir);
         }
     }
 
@@ -98,24 +105,23 @@ public class Player : MonoBehaviour
         throw new System.NotImplementedException();
     }
 
-    // change this logic
     Tile GetNextTile(Tile currentTile)
     {
         float margin = .3f;
 
-        if(AD_MathUtils.DoesVectorsLookAtSameDirection(Vector3.up, transform.up, margin))
+        if(adMath.DoesVectorsLookAtSameDirection(Vector3.up, transform.up, margin))
         {
             return currentTile.upNeighbor;
         }
-        else if(AD_MathUtils.DoesVectorsLookAtSameDirection(Vector3.down, transform.up, margin))
+        else if(adMath.DoesVectorsLookAtSameDirection(Vector3.down, transform.up, margin))
         {
             return currentTile.downNeighbor;
         }
-        else if(AD_MathUtils.DoesVectorsLookAtSameDirection(Vector3.right, transform.up, margin))
+        else if(adMath.DoesVectorsLookAtSameDirection(Vector3.right, transform.up, margin))
         {
             return currentTile.rightNeighbor;
         }
-        else if(AD_MathUtils.DoesVectorsLookAtSameDirection(Vector3.left, transform.up, margin))
+        else if(adMath.DoesVectorsLookAtSameDirection(Vector3.left, transform.up, margin))
         {
             return currentTile.leftNeighbor;
         }

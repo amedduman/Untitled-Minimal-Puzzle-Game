@@ -1,16 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
-[DefaultExecutionOrder(-10000)]
-public class AutoRegister : MonoBehaviour
+namespace amed.utils.serviceLoc
 {
-    [SerializeField] Component _cmp;
+    using UnityEngine;
 
-    void Awake()
+    [DefaultExecutionOrder(-10000)]
+    public class AutoRegister : MonoBehaviour
     {
-        Services.ServiceLocator.Instance.Register(_cmp);
+        [SerializeField] Component _cmp;
+
+        void Awake()
+        {
+            ServiceLocator.Instance.Register(_cmp);
+        }
     }
 }

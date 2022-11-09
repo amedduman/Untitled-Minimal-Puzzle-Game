@@ -14,7 +14,7 @@ public abstract class Tile : MonoBehaviour
     [ReadOnly] public Tile upNeighbor;
     [ReadOnly] public Tile downNeighbor;
 
-    [SerializeField] LayerMask _layerToRaycast;
+    LayerMask _layerToRaycast;
 
     void Awake()
     {

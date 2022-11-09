@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Services
+﻿namespace amed.utils.serviceLoc
 {
+    using System;
+    using System.Collections.Generic;
+    using UnityEngine;
+
+
     [DefaultExecutionOrder(-100000)]
     public class ServiceLocator : MonoBehaviour
     {
-        public static ServiceLocator Instance { get; private set;} = null;
+        public static ServiceLocator Instance { get; private set; } = null;
         readonly Dictionary<Type, object> Services = new Dictionary<Type, object>();
 
         void Awake()

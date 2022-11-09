@@ -1,8 +1,8 @@
-namespace AD.Utils.Math
+namespace amed.utils.math
 {
     using UnityEngine;
 
-    public static class AD_MathUtils
+    public static class adMath
     {
         public static bool DoesVectorsLookAtSameDirection(Vector3 a, Vector3 b, float margin)
         {
