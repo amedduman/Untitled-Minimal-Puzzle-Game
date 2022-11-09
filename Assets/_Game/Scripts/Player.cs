@@ -38,13 +38,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public bool IsThisTileNext(Tile tile)
-    {
-        Tile currentTile = GetCurrentTilePlayerOn();
-        Tile nextTile = GetNextTile(currentTile);
-        return tile == nextTile;
-    }
-
     public void Move()
     {
         var currentTile = GetCurrentTilePlayerOn();
@@ -84,12 +77,13 @@ public class Player : MonoBehaviour
 
         if (tile.TryGetComponent(out TurnPoint turnPoint))
         {
+            turnPoint.SetArrowColorsToNormal();
             var turnInfo = turnPoint.GetTurnInfo(transform);
             Turn(turnInfo.Dir);
         }
     }
 
-    Tile GetCurrentTilePlayerOn()
+    public Tile GetCurrentTilePlayerOn()
     {
         // other wise raycast is not going to detect tile
         Physics2D.queriesStartInColliders = true;

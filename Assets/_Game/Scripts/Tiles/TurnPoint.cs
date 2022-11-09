@@ -4,16 +4,14 @@ using amed.utils.serviceLoc;
 
 public struct TurnInfo
 {
-    public Vector3 Dir {get; private set;}
-    public SpriteRenderer Sprite {get; private set;}
+    public Vector3 Dir { get; private set; }
+    public SpriteRenderer Sprite { get; private set; }
 
     public TurnInfo(Vector3 dir, SpriteRenderer sprite)
-    {   
+    {
         Dir = dir;
         Sprite = sprite;
     }
-
-
 }
 
 public class TurnPoint : Tile
@@ -24,6 +22,7 @@ public class TurnPoint : Tile
     [SerializeField] SpriteRenderer _arrowImageB;
 
     Player _player;
+    bool _performed = false;
 
     void Start()
     {
@@ -32,18 +31,28 @@ public class TurnPoint : Tile
 
     void Update()
     {
-        if(_player.IsThisTileNext(this))
+        if (this == _player.GetCurrentTilePlayerOn())
         {
-            Debug.Log("I'm the next");
+            if (_performed == false)
+            {
+                var turnInfo = GetTurnInfo(_player.transform);
+                turnInfo.Sprite.color = Color.green;
+                _performed = true;
+                Debug.Log("performed");
+            }
 
-            var turnInfo = GetTurnInfo(_player.transform);
-            turnInfo.Sprite.color = Color.green;
         }
         else
         {
-            _arrowImageA.color = Color.white;
-            _arrowImageB.color = Color.white;
+            _performed = false;
+            SetArrowColorsToNormal();
         }
+    }
+
+    public void SetArrowColorsToNormal()
+    {
+        _arrowImageA.color = Color.white;
+        _arrowImageB.color = Color.white;
     }
 
     public TurnInfo GetTurnInfo(Transform player)
@@ -54,11 +63,11 @@ public class TurnPoint : Tile
         Vector3 directionB = (_pointB.position - transform.position).normalized;
 
         float margin = .9f;
-        if(adMath.DoesVectorsPerpendicular(playerDir, directionA, margin))
+        if (adMath.DoesVectorsPerpendicular(playerDir, directionA, margin))
         {
             return new TurnInfo(directionA, _arrowImageA);
         }
-        else if(adMath.DoesVectorsPerpendicular(playerDir, directionB, margin))
+        else if (adMath.DoesVectorsPerpendicular(playerDir, directionB, margin))
         {
             return new TurnInfo(directionB, _arrowImageB);
         }
