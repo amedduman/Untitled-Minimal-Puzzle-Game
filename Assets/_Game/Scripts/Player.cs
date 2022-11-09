@@ -9,9 +9,13 @@ using Sirenix.OdinInspector;
 public class Player : MonoBehaviour
 {
     public float Speed = 4;
-    [SerializeField] LayerMask _layerToRaycast;
-    Tweener _moveTweener;
+    LayerMask _layerToRaycast;
     bool _firstTap = true;
+
+    void Awake()
+    {
+        _layerToRaycast = LayerMask.GetMask("Tile");
+    }
 
     void Update()
     {
@@ -34,14 +38,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Move()
+    public void Move()
     {
         var currentTile = GetCurrentTilePlayerOn();
         var nextTile = GetNextTile(currentTile);
         if (nextTile != null)
         {
-            _moveTweener = nextTile.React(this, Move);
-            // _moveTweener = transform.DOMove(nextTile.transform.position, _speed).SetSpeedBased().OnComplete(Move).SetEase(Ease.Linear);
+            nextTile.React(this);
         }
         else
         {
@@ -65,7 +68,7 @@ public class Player : MonoBehaviour
 
     public void Stop()
     {
-        _moveTweener.Kill();
+        DOTween.Kill(transform);
     }
 
     void TryChangeDirection()
@@ -117,56 +120,6 @@ public class Player : MonoBehaviour
             return currentTile.leftNeighbor;
         }
 
-        // var worldUp = Vector3.up;
-        // var worldDown = Vector3.down;
-        // var worldRight = Vector3.right;
-        // var worldLeft = Vector3.left;
-
-        // var playerUp = transform.up;
-
-        // float dotUp = Vector3.Dot(worldUp, playerUp);
-        // float dotDown = Vector3.Dot(worldDown, playerUp);
-        // float dotRight = Vector3.Dot(worldRight, playerUp);
-        // float dotLeft = Vector3.Dot(worldRight, playerUp);
-
-        // Debug.Log(dotUp);
-        // Debug.Log(dotDown);
-        // Debug.Log(dotRight);
-        // Debug.Log(dotLeft);
-
-        // if(AD_MathUtils.CloseTo(1, dotUp, .5f))
-        // {
-        //     return currentTile.upNeighbor;
-        // }
-        // else if(AD_MathUtils.CloseTo(1, dotDown, .5f))
-        // {
-        //     return currentTile.downNeighbor;
-        // }
-        // else if(AD_MathUtils.CloseTo(1, dotRight, .5f))
-        // {
-        //     return currentTile.rightNeighbor;
-        // }
-        // else if(AD_MathUtils.CloseTo(1, dotLeft, .5f))
-        // {
-        //     return currentTile.leftNeighbor;
-        // }
-
-        // if (playerUp == worldUp)
-        // {
-        //     return currentTile.upNeighbor;
-        // }
-        // else if (playerUp == worldDown)
-        // {
-        //     return currentTile.downNeighbor;
-        // }
-        // else if (playerUp == worldRight)
-        // {
-        //     return currentTile.rightNeighbor;
-        // }
-        // else if (playerUp == worldLeft)
-        // {
-        //     return currentTile.leftNeighbor;
-        // }
         else
         {
             Debug.Log("There is a problem while getting Next tile");

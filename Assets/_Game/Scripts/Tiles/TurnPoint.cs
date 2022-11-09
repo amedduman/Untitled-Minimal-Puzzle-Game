@@ -6,6 +6,11 @@ public class TurnPoint : Tile
     [SerializeField] Transform _firstPoint;
     [SerializeField] Transform _secondPoint;
 
+    void Update()
+    {
+        
+    }
+
     public Vector3 GetTurnDirection(Transform player)
     {
         Vector3 playerDir = player.up;

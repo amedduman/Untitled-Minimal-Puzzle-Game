@@ -15,10 +15,12 @@ public class HazardTile : Tile
     //     }
     // }
 
-    public override Tweener React(Player player, Action funcToCall)
+    public override void React(Player player)
     {
-        funcToCall = CallToLoseGame;
-        return base.React(player, funcToCall);
+        player.transform.DOMove(transform.position, player.Speed).
+        SetSpeedBased().
+        SetEase(Ease.Linear).
+        OnComplete(CallToLoseGame);
     }
 
     void CallToLoseGame()

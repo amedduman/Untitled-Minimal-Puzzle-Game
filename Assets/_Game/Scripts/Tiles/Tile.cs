@@ -6,8 +6,6 @@ using DG.Tweening;
 [SelectionBase]
 public abstract class Tile : MonoBehaviour
 {
-    [SerializeField] LayerMask _layerToRaycast;
-
     [HideInInspector] public int tileIdX;
     [HideInInspector] public int tileIdY;
 
@@ -16,15 +14,22 @@ public abstract class Tile : MonoBehaviour
     [ReadOnly] public Tile upNeighbor;
     [ReadOnly] public Tile downNeighbor;
 
+    [SerializeField] LayerMask _layerToRaycast;
+
     void Awake()
     {
         // to prevent raycast detect object's collider.
         Physics2D.queriesStartInColliders = false;
+
+        _layerToRaycast = LayerMask.GetMask("Tile");
     }
 
-    public virtual Tweener React(Player player, Action funcToCall)
+    public virtual void React(Player player)
     {
-        return player.transform.DOMove(transform.position, player.Speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(()=>funcToCall());
+        player.transform.DOMove(transform.position, player.Speed).
+        SetSpeedBased().
+        SetEase(Ease.Linear).
+        OnComplete(player.Move);
     }
 
     public void SetNeighborsNewMethod()

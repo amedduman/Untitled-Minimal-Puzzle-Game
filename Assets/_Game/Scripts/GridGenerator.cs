@@ -55,11 +55,6 @@ public class GridGenerator : MonoBehaviour
 				tiles[i, j] = tile; 
 			}
         }
-
-		// foreach (var tile in tiles)
-		// {
-		// 	tile.SetNeighbors(tiles);
-		// }
     }
 #endif
 
