@@ -38,7 +38,6 @@ public class TurnPoint : Tile
                 var turnInfo = GetTurnInfo(_player.transform);
                 turnInfo.Sprite.color = Color.green;
                 _performed = true;
-                Debug.Log("performed");
             }
 
         }

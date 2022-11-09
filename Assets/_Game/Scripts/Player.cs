@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount > 0)
         {
             if (_firstTap)
             {
@@ -30,11 +30,6 @@ public class Player : MonoBehaviour
             {
                 TryChangeDirection();
             }
-        }
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Stop();
         }
     }
 
