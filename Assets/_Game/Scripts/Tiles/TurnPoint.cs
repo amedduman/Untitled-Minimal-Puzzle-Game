@@ -1,6 +1,7 @@
 using UnityEngine;
 using amed.utils.math;
 using amed.utils.serviceLoc;
+using amed.utils.sound;
 
 public struct TurnInfo
 {
@@ -16,36 +17,47 @@ public struct TurnInfo
 
 public class TurnPoint : Tile
 {
+    [SerializeField] AudioClip _playerEnteredSFX;
+    [SerializeField] AudioClip _playerTappedToTurnSFX;
     [SerializeField] Transform _pointA;
     [SerializeField] Transform _pointB;
     [SerializeField] SpriteRenderer _arrowImageA;
     [SerializeField] SpriteRenderer _arrowImageB;
 
     Player _player;
-    bool _performed = false;
+    SoundManager _soundMng;
+    bool _playerEntered = false;
 
     void Start()
     {
         _player = ServiceLocator.Instance.Get<Player>();
+        _soundMng = ServiceLocator.Instance.Get<SoundManager>();
     }
 
     void Update()
     {
         if (this == _player.GetCurrentTilePlayerOn())
         {
-            if (_performed == false)
+            if (_playerEntered == false)
             {
+                _soundMng.PlaySound(_playerEnteredSFX);
                 var turnInfo = GetTurnInfo(_player.transform);
                 turnInfo.Sprite.color = Color.green;
-                _performed = true;
+                _playerEntered = true;
             }
 
         }
         else
         {
-            _performed = false;
+            _playerEntered = false;
             SetArrowColorsToNormal();
         }
+    }
+
+    public void PlayerTapToTurn()
+    {
+        _soundMng.PlaySound(_playerTappedToTurnSFX);
+        SetArrowColorsToNormal();
     }
 
     public void SetArrowColorsToNormal()

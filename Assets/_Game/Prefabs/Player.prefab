@@ -131,9 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 2
-  _layerToRaycast:
-    serializedVersion: 2
-    m_Bits: 64
+  _reflectSFX: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
 --- !u!114 &6044845918073698911
 MonoBehaviour:
   m_ObjectHideFlags: 0

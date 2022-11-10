@@ -314,9 +314,8 @@ MonoBehaviour:
   leftNeighbor: {fileID: 0}
   upNeighbor: {fileID: 0}
   downNeighbor: {fileID: 0}
-  _layerToRaycast:
-    serializedVersion: 2
-    m_Bits: 64
+  _playerEnteredSFX: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
+  _playerTappedToTurnSFX: {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
   _pointA: {fileID: 6151077566011108501}
   _pointB: {fileID: 5570697948879014670}
   _arrowImageA: {fileID: 3808845271431332184}

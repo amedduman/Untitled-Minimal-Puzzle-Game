@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using amed.utils.math;
+using amed.utils.sound;
+using amed.utils.serviceLoc;
 using Sirenix.OdinInspector;
 
 public class Player : MonoBehaviour
 {
     public float Speed = 4;
+    [SerializeField] AudioClip _reflectSFX;
+    SoundManager _soundMng;
     LayerMask _layerToRaycast;
     bool _firstTap = true;
 
@@ -17,18 +21,39 @@ public class Player : MonoBehaviour
         _layerToRaycast = LayerMask.GetMask("Tile");
     }
 
+    void Start()
+    {
+        _soundMng = ServiceLocator.Instance.Get<SoundManager>();
+    }
+
     void Update()
     {
-        if (Input.touchCount > 0)
+        // if (Input.touchCount > 0)
+        // {
+        //     if (_firstTap)
+        //     {
+        //         Move();
+        //         _firstTap = false;
+        //     }
+        //     else
+        //     {
+        //         TryChangeDirection();
+        //     }
+        // }
+
+        if (Input.touchCount >= 1)
         {
-            if (_firstTap)
+            if (Input.touches[0].phase == TouchPhase.Began)
             {
-                Move();
-                _firstTap = false;
-            }
-            else
-            {
-                TryChangeDirection();
+                if (_firstTap)
+                {
+                    Move();
+                    _firstTap = false;
+                }
+                else
+                {
+                    TryChangeDirection();
+                }
             }
         }
     }
@@ -49,6 +74,7 @@ public class Player : MonoBehaviour
 
     public void Reflect()
     {
+        _soundMng.PlaySound(_reflectSFX);
         Vector3 rot = transform.rotation.eulerAngles;
         rot.z -= 180;
         transform.DORotate(rot, .3f).OnComplete(Move);
@@ -72,7 +98,7 @@ public class Player : MonoBehaviour
 
         if (tile.TryGetComponent(out TurnPoint turnPoint))
         {
-            turnPoint.SetArrowColorsToNormal();
+            turnPoint.PlayerTapToTurn();
             var turnInfo = turnPoint.GetTurnInfo(transform);
             Turn(turnInfo.Dir);
         }
@@ -98,19 +124,19 @@ public class Player : MonoBehaviour
     {
         float margin = .3f;
 
-        if(adMath.DoesVectorsLookAtSameDirection(Vector3.up, transform.up, margin))
+        if (adMath.DoesVectorsLookAtSameDirection(Vector3.up, transform.up, margin))
         {
             return currentTile.upNeighbor;
         }
-        else if(adMath.DoesVectorsLookAtSameDirection(Vector3.down, transform.up, margin))
+        else if (adMath.DoesVectorsLookAtSameDirection(Vector3.down, transform.up, margin))
         {
             return currentTile.downNeighbor;
         }
-        else if(adMath.DoesVectorsLookAtSameDirection(Vector3.right, transform.up, margin))
+        else if (adMath.DoesVectorsLookAtSameDirection(Vector3.right, transform.up, margin))
         {
             return currentTile.rightNeighbor;
         }
-        else if(adMath.DoesVectorsLookAtSameDirection(Vector3.left, transform.up, margin))
+        else if (adMath.DoesVectorsLookAtSameDirection(Vector3.left, transform.up, margin))
         {
             return currentTile.leftNeighbor;
         }
