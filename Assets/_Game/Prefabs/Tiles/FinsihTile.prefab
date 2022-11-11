@@ -167,12 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9549ef142a93b48c9a4ae9f58eb640ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _layerToRaycast:
-    serializedVersion: 2
-    m_Bits: 64
   tileIdX: 0
   tileIdY: 0
   rightNeighbor: {fileID: 0}
   leftNeighbor: {fileID: 0}
   upNeighbor: {fileID: 0}
   downNeighbor: {fileID: 0}
+  _playerWinSFX: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}

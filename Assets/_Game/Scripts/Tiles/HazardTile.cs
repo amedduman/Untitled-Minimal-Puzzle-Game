@@ -1,30 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using System;
+using amed.utils.sound;
+using amed.utils.serviceLoc;
 
 public class HazardTile : Tile
 {
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if(other.gameObject.TryGetComponent(out Player player))
-    //     {
-    //         player.Stop();
-    //         player.transform.DOMove(transform.position, 2).SetSpeedBased().SetEase(Ease.Linear);
-    //     }
-    // }
+    [SerializeField] AudioClip _playerLoseSFX;
 
     public override void React(Player player)
     {
         player.transform.DOMove(transform.position, player.Speed).
         SetSpeedBased().
-        SetEase(Ease.Linear).
-        OnComplete(CallToLoseGame);
-    }
-
-    void CallToLoseGame()
-    {
-        Debug.Log("Lose");
+        SetEase(Ease.Linear);
+        ServiceLocator.Instance.Get<SoundManager>().PlaySound(_playerLoseSFX);
+        ServiceLocator.Instance.Get<GameManager>().PlayerDied();
     }
 }

@@ -11,14 +11,28 @@ using Sirenix.OdinInspector;
 public class Player : MonoBehaviour
 {
     public float Speed = 4;
+    [SerializeField] Transform _body;
     [SerializeField] AudioClip _reflectSFX;
+    [SerializeField] ParticleSystem _deathVFX;
     SoundManager _soundMng;
+    GameManager _gameMng;
     LayerMask _layerToRaycast;
     bool _firstTap = true;
 
     void Awake()
     {
         _layerToRaycast = LayerMask.GetMask("Tile");
+        _gameMng = ServiceLocator.Instance.Get<GameManager>();
+    }
+
+    void OnEnable()
+    {
+        _gameMng.OnPlayerDied += HandleDeath;
+    }
+
+    void OnDisable()
+    {
+        _gameMng.OnPlayerDied -= HandleDeath;
     }
 
     void Start()
@@ -56,6 +70,12 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    void HandleDeath()
+    {
+        _body.gameObject.SetActive(false);
+        _deathVFX.Play();
     }
 
     public void Move()

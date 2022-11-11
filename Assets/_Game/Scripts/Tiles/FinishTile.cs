@@ -1,17 +1,12 @@
 using UnityEngine;
 using DG.Tweening;
 using System;
+using amed.utils.sound;
+using amed.utils.serviceLoc;
 
 public class FinishTile : Tile
 {
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if(other.gameObject.TryGetComponent(out Player player))
-    //     {
-    //         player.Stop();
-    //         player.transform.DOMove(transform.position, 2).SetSpeedBased().SetEase(Ease.Linear);
-    //     }
-    // }
+    [SerializeField] AudioClip _playerWinSFX;
 
     public override void React(Player player)
     {
@@ -23,6 +18,6 @@ public class FinishTile : Tile
 
     void CallToWinGame()
     {
-        Debug.Log("win game");
+        ServiceLocator.Instance.Get<SoundManager>().PlaySound(_playerWinSFX);
     }
 }
