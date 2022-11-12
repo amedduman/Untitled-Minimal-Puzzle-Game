@@ -29,12 +29,21 @@ public abstract class Tile : MonoBehaviour
 
     public virtual void React(Player player)
     {
-        _playerEnteredFb.PlayFeedbacks();   
+        PlayPlayerEnterFeedback();
+       Move(player);
+    }
 
+    protected void Move(Player player)
+    {
         player.transform.DOMove(transform.position, player.Speed).
         SetSpeedBased().
         SetEase(Ease.Linear).
         OnComplete(player.Move);
+    }
+
+    protected void PlayPlayerEnterFeedback()
+    {
+        _playerEnteredFb.PlayFeedbacks();   
     }
 
     public void SetNeighborsNewMethod()

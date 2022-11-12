@@ -15,8 +15,6 @@ public class Player : MonoBehaviour
     [SerializeField] Transform _body;
     [SerializeField] MMF_Player _playerDiedFb;
     [SerializeField] MMF_Player _playerReflectedFb;
-    [SerializeField] AudioClip _reflectSFX;
-    [SerializeField] ParticleSystem _deathVFX;
     GameController _gameMng;
     LayerMask _layerToRaycast;
     bool _firstTap = true;
@@ -35,6 +33,8 @@ public class Player : MonoBehaviour
     void OnDisable()
     {
         _gameMng.OnPlayerDied -= HandleDeath;
+
+        DOTween.Kill(transform);
     }
 
     void Update()
@@ -165,12 +165,15 @@ public class Player : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     [PropertySpace]
     [Button]
     void SetPlayerTile()
     {
+        _layerToRaycast = LayerMask.GetMask("Tile");
         var tile = GetCurrentTilePlayerOn();
 
         transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, transform.position.z);
     }
+#endif
 }

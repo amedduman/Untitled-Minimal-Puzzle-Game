@@ -16,4 +16,10 @@ MonoBehaviour:
   defaultEditorBehaviour: 11
   processMouseMoveInInspector: 1
   drawingConfig:
-    configs: []
+    configs:
+    - DrawnTypeName: TestSceneAttribute, Assembly-CSharp
+      EditorTypeName: 
+    - DrawnTypeName: SceneDataContainer, Assembly-CSharp
+      EditorTypeName: 
+    - DrawnTypeName: LevelDataContainer, Assembly-CSharp
+      EditorTypeName: 

@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 
 public class GridGenerator : MonoBehaviour 
 {
-	[SerializeField] Camera gameCam;
+	Camera gameCam;
 	[SerializeField] Tile tilePrefab;
 	[SerializeField] float _tilesPosOnZAxis;
 	[SerializeField] int xSize = 8;
@@ -18,6 +18,8 @@ public class GridGenerator : MonoBehaviour
 	void GenerateGrid () 
 	{
 		tiles = new Tile[xSize, ySize];
+
+		gameCam = FindObjectOfType<Camera>();
 		
 		// calculate needed distance between tiles
 		Vector2 offset = tilePrefab.GetComponentInChildren<SpriteRenderer>().bounds.size;

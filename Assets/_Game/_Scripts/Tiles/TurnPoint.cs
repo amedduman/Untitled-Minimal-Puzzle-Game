@@ -32,13 +32,18 @@ public class TurnPoint : Tile
         _player = ServiceLocator.Instance.Get<Player>();
     }
 
+    public override void React(Player player)
+    {
+        Move(player);
+    }
+
     void Update()
     {
         if (this == _player.GetCurrentTilePlayerOn())
         {
             if (_playerEntered == false)
             {
-                //
+                _playerEnteredFb.PlayFeedbacks();
                 var turnInfo = GetTurnInfo(_player.transform);
                 turnInfo.Sprite.color = Color.green;
                 _playerEntered = true;

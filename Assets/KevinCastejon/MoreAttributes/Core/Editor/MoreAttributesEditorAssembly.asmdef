@@ -1,0 +1,18 @@
+{
+    "name": "MoreAttributesEditorAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f0e3c70624d4e6d4fa3c22f454882c04"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
