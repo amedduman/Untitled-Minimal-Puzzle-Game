@@ -10,6 +10,8 @@ public class BlockTile : Tile
     {
         // base.React(player, funcToCall);
 
+        _playerEnteredFb.PlayFeedbacks();
+
         Vector3 rot = player.transform.rotation.eulerAngles;
         rot.z -= 180;
         player.transform.DORotate(rot, .3f).OnComplete(player.Move);
