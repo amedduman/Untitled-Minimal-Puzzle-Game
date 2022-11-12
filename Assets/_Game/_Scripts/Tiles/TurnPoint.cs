@@ -25,13 +25,11 @@ public class TurnPoint : Tile
     [SerializeField] SpriteRenderer _arrowImageB;
 
     Player _player;
-    SoundManager _soundMng;
     bool _playerEntered = false;
 
     void Start()
     {
         _player = ServiceLocator.Instance.Get<Player>();
-        _soundMng = ServiceLocator.Instance.Get<SoundManager>();
     }
 
     void Update()

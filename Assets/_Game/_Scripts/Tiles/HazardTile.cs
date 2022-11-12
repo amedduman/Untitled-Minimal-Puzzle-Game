@@ -11,6 +11,6 @@ public class HazardTile : Tile
         SetSpeedBased().
         SetEase(Ease.Linear);
         _playerEnteredFb.PlayFeedbacks();
-        ServiceLocator.Instance.Get<GameManager>().PlayerDied();
+        ServiceLocator.Instance.Get<GameController>().PlayerDied();
     }
 }

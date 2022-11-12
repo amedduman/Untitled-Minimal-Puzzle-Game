@@ -17,15 +17,14 @@ public class Player : MonoBehaviour
     [SerializeField] MMF_Player _playerReflectedFb;
     [SerializeField] AudioClip _reflectSFX;
     [SerializeField] ParticleSystem _deathVFX;
-    SoundManager _soundMng;
-    GameManager _gameMng;
+    GameController _gameMng;
     LayerMask _layerToRaycast;
     bool _firstTap = true;
 
     void Awake()
     {
         _layerToRaycast = LayerMask.GetMask("Tile");
-        _gameMng = ServiceLocator.Instance.Get<GameManager>();
+        _gameMng = ServiceLocator.Instance.Get<GameController>();
     }
 
     void OnEnable()
@@ -36,11 +35,6 @@ public class Player : MonoBehaviour
     void OnDisable()
     {
         _gameMng.OnPlayerDied -= HandleDeath;
-    }
-
-    void Start()
-    {
-        _soundMng = ServiceLocator.Instance.Get<SoundManager>();
     }
 
     void Update()

@@ -965,10 +965,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3957852986398521563, guid: f2a45490a3901424fad5da0254778b72, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4983d2c94d1514992a99d207c2e241e7, type: 3}
     - target: {fileID: 5445946493588073021, guid: f2a45490a3901424fad5da0254778b72, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1013,8 +1009,6 @@ MonoBehaviour:
   downNeighbor: {fileID: 0}
   _playerEnteredFb: {fileID: 5807835523303989652}
   _playerTurnedFb: {fileID: 2414424598693680877}
-  _playerEnteredSFX: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
-  _playerTappedToTurnSFX: {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
   _pointA: {fileID: 6151077566011108501}
   _pointB: {fileID: 5570697948879014670}
   _arrowImageA: {fileID: 3808845271431332184}
