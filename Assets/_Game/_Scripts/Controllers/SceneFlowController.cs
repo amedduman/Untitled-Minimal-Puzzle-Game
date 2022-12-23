@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using amed.utils.serviceLoc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +17,7 @@ public class SceneFlowController : MonoBehaviour
         LoadSavedLevel();
     }
 
-    void LoadSavedLevel()
+    public void LoadSavedLevel()
     {
         var savedLvlName = GetSavedLevelName();
 
@@ -24,7 +26,7 @@ public class SceneFlowController : MonoBehaviour
         SceneManager.LoadSceneAsync(savedLvlName, LoadSceneMode.Additive);
     }
 
-    void LoadNextLevel()
+    public void LoadNextLevel()
     {
         var savedLvlName = GetSavedLevelName();
 

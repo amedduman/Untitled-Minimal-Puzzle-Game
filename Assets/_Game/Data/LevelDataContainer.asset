@@ -17,3 +17,5 @@ MonoBehaviour:
     SceneName: Level 1
   - IsLoopable: 1
     SceneName: Level 2
+  - IsLoopable: 1
+    SceneName: Level 3

@@ -23,12 +23,13 @@
 
             Instance = this;
         }
-        public void Register<TService>(TService service, bool safe = true) /*where TService : class, new()*/
+        public void Register<TService>(TService service /*, bool safe = true*/) /*where TService : class, new()*/
         {
-            if (IsRegistered(service) && safe)
-            {
-                throw new ServiceLocatorException($"{service.GetType().Name} has been already registered.");
-            }
+            // if (IsRegistered(service) /*&& safe*/)
+            // {
+            //     Debug.LogWarning("same shit");
+            //     throw new ServiceLocatorException($"{service.GetType().Name} has been already registered.");
+            // }
             Services[service.GetType()] = service;
         }
 

@@ -17,5 +17,6 @@ public class FinishTile : Tile
     void CallToWinGame()
     {
         _playerEnteredFb.PlayFeedbacks();
+        ServiceLocator.Instance.Get<GameController>().PlayerWin();
     }
 }
