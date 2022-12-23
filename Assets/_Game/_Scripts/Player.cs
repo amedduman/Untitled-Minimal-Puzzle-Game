@@ -52,19 +52,33 @@ public class Player : MonoBehaviour
         //     }
         // }
 
-        if (Input.touchCount >= 1)
+        // enable codes below
+        // if (Input.touchCount >= 1)
+        // {
+        //     if (Input.touches[0].phase == TouchPhase.Began)
+        //     {
+        //         if (_firstTap)
+        //         {
+        //             Move();
+        //             _firstTap = false;
+        //         }
+        //         else
+        //         {
+        //             TryChangeDirection();
+        //         }
+        //     }
+        // }
+
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.touches[0].phase == TouchPhase.Began)
+            if (_firstTap)
             {
-                if (_firstTap)
-                {
-                    Move();
-                    _firstTap = false;
-                }
-                else
-                {
-                    TryChangeDirection();
-                }
+                Move();
+                _firstTap = false;
+            }
+            else
+            {
+                TryChangeDirection();
             }
         }
     }

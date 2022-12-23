@@ -656,7 +656,7 @@ PlayerSettings:
   webGLTemplate: APPLICATION:Default
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 0
+  webGLCompressionFormat: 2
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
@@ -664,6 +664,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     Android: ODIN_INSPECTOR
     Standalone: ODIN_INSPECTOR;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    WebGL: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;ODIN_INSPECTOR
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
