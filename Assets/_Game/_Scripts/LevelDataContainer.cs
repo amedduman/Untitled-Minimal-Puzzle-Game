@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using KevinCastejon.MoreAttributes;
 
 // [CreateAssetMenu(fileName = "SceneDataContainer", menuName = "Game/LevelDataContainer")]
 public class LevelDataContainer : ScriptableObject

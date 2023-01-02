@@ -481,8 +481,6 @@ MonoBehaviour:
   _body: {fileID: 6281849213356728442}
   _playerDiedFb: {fileID: 282670256586885138}
   _playerReflectedFb: {fileID: 8188088103781229299}
-  _reflectSFX: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
-  _deathVFX: {fileID: 0}
 --- !u!114 &6044845918073698911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,7 +493,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872af7525b0804cd496a3f613d2f7be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSingleton: 1
   _cmp: {fileID: 5783660576863776776}
+  _id: 0
 --- !u!1 &6300953307981757647
 GameObject:
   m_ObjectHideFlags: 0

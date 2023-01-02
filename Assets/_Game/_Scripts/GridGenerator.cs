@@ -1,10 +1,15 @@
 using System;
+using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 using UnityEngine;
 using UnityEditor;
-using Sirenix.OdinInspector;
 
-public class GridGenerator : MonoBehaviour 
+public class GridGenerator : MonoBehaviour
 {
+	[MMInspectorButton(nameof(GenerateGrid))][SerializeField]private int b0;
+	[MMInspectorButton(nameof(DestroyGrid))][SerializeField]private int b1;
+	
+	
 	Camera gameCam;
 	[SerializeField] Tile tilePrefab;
 	[SerializeField] float _tilesPosOnZAxis;
@@ -14,7 +19,7 @@ public class GridGenerator : MonoBehaviour
 	Tile[,] tiles;
 #if UNITY_EDITOR
 	
-	[PropertySpace] [Button]
+	[ContextMenu("Generate Grid")]
 	void GenerateGrid () 
 	{
 		tiles = new Tile[xSize, ySize];
@@ -80,7 +85,7 @@ public class GridGenerator : MonoBehaviour
 		tile.gameObject.name = $"Tile ({x + 1},{y + 1})";
 	}
 
-	[PropertySpace] [Button]
+	[ContextMenu("Destroy Grid")]
     void DestroyGrid()
 	{
 		for (int i = transform.childCount - 1; i >= 0; i--)

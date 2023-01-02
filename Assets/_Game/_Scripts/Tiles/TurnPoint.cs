@@ -1,6 +1,5 @@
 using UnityEngine;
 using amed.utils.math;
-using amed.utils.serviceLoc;
 using amed.utils.sound;
 using MoreMountains.Feedbacks;
 
@@ -29,7 +28,7 @@ public class TurnPoint : Tile
 
     void Start()
     {
-        _player = ServiceLocator.Instance.Get<Player>();
+        _player = ServiceLocator.Get<Player>();
     }
 
     public override void React(Player player)

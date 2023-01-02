@@ -1,7 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 using amed.utils.sound;
-using amed.utils.serviceLoc;
 
 public class HazardTile : Tile
 {
@@ -11,6 +10,6 @@ public class HazardTile : Tile
         SetSpeedBased().
         SetEase(Ease.Linear);
         _playerEnteredFb.PlayFeedbacks();
-        ServiceLocator.Instance.Get<GameController>().PlayerDied();
+        ServiceLocator.Get<GameController>().PlayerDied();
     }
 }

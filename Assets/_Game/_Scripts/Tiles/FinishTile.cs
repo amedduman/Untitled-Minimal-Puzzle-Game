@@ -1,8 +1,4 @@
-using UnityEngine;
 using DG.Tweening;
-using System;
-using amed.utils.sound;
-using amed.utils.serviceLoc;
 
 public class FinishTile : Tile
 {
@@ -17,6 +13,6 @@ public class FinishTile : Tile
     void CallToWinGame()
     {
         _playerEnteredFb.PlayFeedbacks();
-        ServiceLocator.Instance.Get<GameController>().PlayerWin();
+        ServiceLocator.Get<GameController>().PlayerWin();
     }
 }

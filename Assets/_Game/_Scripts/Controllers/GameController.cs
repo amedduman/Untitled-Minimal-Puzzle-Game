@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using amed.utils.serviceLoc;
 using DG.Tweening;
 
 public class GameController : MonoBehaviour
@@ -14,7 +13,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        _sceneFlowController = ServiceLocator.Instance.Get<SceneFlowController>();
+        _sceneFlowController = ServiceLocator.Get<SceneFlowController>();
     }
 
     public void PlayerDied() 

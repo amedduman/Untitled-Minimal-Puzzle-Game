@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using amed.utils.serviceLoc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

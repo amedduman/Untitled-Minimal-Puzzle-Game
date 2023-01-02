@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Sirenix.OdinInspector;
 using DG.Tweening;
 using MoreMountains.Feedbacks;
 
@@ -10,10 +9,10 @@ public abstract class Tile : MonoBehaviour
     [HideInInspector] public int tileIdX;
     [HideInInspector] public int tileIdY;
 
-    [ReadOnly] public Tile rightNeighbor;
-    [ReadOnly] public Tile leftNeighbor;
-    [ReadOnly] public Tile upNeighbor;
-    [ReadOnly] public Tile downNeighbor;
+    [MMFReadOnly] public Tile rightNeighbor;
+    [MMFReadOnly] public Tile leftNeighbor;
+    [MMFReadOnly] public Tile upNeighbor;
+    [MMFReadOnly] public Tile downNeighbor;
 
     public MMF_Player _playerEnteredFb;
 

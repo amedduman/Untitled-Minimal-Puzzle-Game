@@ -57,4 +57,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872af7525b0804cd496a3f613d2f7be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSingleton: 1
   _cmp: {fileID: 5092300462135939853}
+  _id: 0

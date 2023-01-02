@@ -5,8 +5,6 @@ using UnityEngine;
 using DG.Tweening;
 using amed.utils.math;
 using amed.utils.sound;
-using amed.utils.serviceLoc;
-using Sirenix.OdinInspector;
 using MoreMountains.Feedbacks;
 
 public class Player : MonoBehaviour
@@ -22,7 +20,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         _layerToRaycast = LayerMask.GetMask("Tile");
-        _gameMng = ServiceLocator.Instance.Get<GameController>();
+        _gameMng = ServiceLocator.Get<GameController>();
     }
 
     void OnEnable()
@@ -180,8 +178,7 @@ public class Player : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    [PropertySpace]
-    [Button]
+    [ContextMenu("Set Player Tile")]
     void SetPlayerTile()
     {
         _layerToRaycast = LayerMask.GetMask("Tile");
