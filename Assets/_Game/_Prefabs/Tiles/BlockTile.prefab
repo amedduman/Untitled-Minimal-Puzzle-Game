@@ -106,7 +106,7 @@ PrefabInstance:
     - target: {fileID: 66793858620937303, guid: f2a45490a3901424fad5da0254778b72, type: 3}
       propertyPath: managedReferences[8343047236419321856].Sfx
       value: 
-      objectReference: {fileID: 8300000, guid: 12c4dbabc4fe54b82b65258c975669c9, type: 3}
+      objectReference: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
     - target: {fileID: 66793858620937303, guid: f2a45490a3901424fad5da0254778b72, type: 3}
       propertyPath: managedReferences[8343047236419321856].Label
       value: Sound

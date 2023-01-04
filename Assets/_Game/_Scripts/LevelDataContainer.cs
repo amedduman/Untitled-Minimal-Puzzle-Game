@@ -30,5 +30,6 @@ public class LevelDataContainer : ScriptableObject
 public class LevelData 
 {
     public bool IsLoopable;
+    [SceneName]
     public string SceneName;
 }
