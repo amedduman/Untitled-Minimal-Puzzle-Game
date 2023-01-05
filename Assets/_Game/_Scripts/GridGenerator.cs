@@ -1,13 +1,17 @@
 using System;
 using MoreMountains.Feedbacks;
+#if UNITY_EDITOR
 using MoreMountains.Tools;
+#endif
 using UnityEngine;
 using UnityEditor;
 
 public class GridGenerator : MonoBehaviour
 {
+#if UNITY_EDITOR
 	[MMInspectorButton(nameof(GenerateGrid))][SerializeField]private int b0;
 	[MMInspectorButton(nameof(DestroyGrid))][SerializeField]private int b1;
+#endif
 	
 	
 	Camera gameCam;

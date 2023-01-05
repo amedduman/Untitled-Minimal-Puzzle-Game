@@ -60,6 +60,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -121,11 +125,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 9.751363
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
       propertyPath: InitialModule.startSize.minScalar
       value: 0.14627045
+      objectReference: {fileID: 0}
+    - target: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
       propertyPath: InitialModule.startSpeed.minScalar
@@ -161,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
-      value: 0.9751366
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key2.b

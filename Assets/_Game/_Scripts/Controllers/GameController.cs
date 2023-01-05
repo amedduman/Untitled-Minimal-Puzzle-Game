@@ -27,4 +27,9 @@ public class GameController : MonoBehaviour
         OnPlayerWin?.Invoke();
         DOVirtual.DelayedCall(1, () => _sceneFlowController.LoadNextLevel());
     }
+
+    public void ManipulateTime(float t)
+    {
+        Time.timeScale = t;
+    }
 }
