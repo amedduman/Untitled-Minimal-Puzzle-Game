@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] MMF_Player _playerReflectedFb;
     GameController _gameMng;
     LayerMask _layerToRaycast;
+    private Tile _lastTilePlayerTurned = null;
     bool _firstTap = true;
 
     void Awake()
@@ -66,6 +67,11 @@ public class Player : MonoBehaviour
         //         }
         //     }
         // }
+
+        if (_lastTilePlayerTurned != GetCurrentTilePlayerOn())
+        {
+            _lastTilePlayerTurned = null;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -123,12 +129,16 @@ public class Player : MonoBehaviour
     void TryChangeDirection()
     {
         var tile = GetCurrentTilePlayerOn();
+        
+        if(tile == _lastTilePlayerTurned) return;
 
         if (tile.TryGetComponent(out TurnPoint turnPoint))
         {
             turnPoint.PlayerTapToTurn();
             var turnInfo = turnPoint.GetTurnInfo(transform);
             Turn(turnInfo.Dir);
+
+            _lastTilePlayerTurned = tile;
         }
     }
 

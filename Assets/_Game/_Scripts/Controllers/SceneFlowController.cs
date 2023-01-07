@@ -40,10 +40,12 @@ public class SceneFlowController : MonoBehaviour
 
     void Update()
     {
+#if UNITY_EDITOR
         if(Input.GetKeyDown(KeyCode.Space))
         {
             LoadNextLevel();
         }
+#endif
     }
 
     void UnloadPreviousLevel(string lvlName)
