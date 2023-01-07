@@ -792,7 +792,7 @@ MonoBehaviour:
         RandomDurationMultiplier: {x: 0.5, y: 2}
         Owner: {fileID: 8188088103781229299}
         DebugActive: 0
-        Sfx: {fileID: 8300000, guid: 8378807d371fc264f9628946390df8d1, type: 3}
+        Sfx: {fileID: 8300000, guid: f875bba495f73804582057f1fa52419e, type: 3}
         RandomSfx: []
         TestPlayButton:
           ButtonText: Debug Play Sound
