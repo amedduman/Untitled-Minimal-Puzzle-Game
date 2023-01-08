@@ -12,8 +12,8 @@ public class SceneFlowController : MonoBehaviour
 
     void Start()
     {
-        _defaultLevelToLoadIfThereIsNoSavedLevelName = _lvlDataCnt.GetFirstLevelName();
-        LoadSavedLevel();
+        // _defaultLevelToLoadIfThereIsNoSavedLevelName = _lvlDataCnt.GetFirstLevelName();
+        // LoadSavedLevel();
     }
 
     public void LoadSavedLevel()

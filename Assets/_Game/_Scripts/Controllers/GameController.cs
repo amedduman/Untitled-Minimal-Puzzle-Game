@@ -19,13 +19,13 @@ public class GameController : MonoBehaviour
     public void PlayerDied() 
     {
         OnPlayerDied?.Invoke();
-        DOVirtual.DelayedCall(1.5f, () => _sceneFlowController.LoadSavedLevel());
+        // DOVirtual.DelayedCall(1.5f, () => _sceneFlowController.LoadSavedLevel());
     }
 
     public void PlayerWin()
     {
         OnPlayerWin?.Invoke();
-        DOVirtual.DelayedCall(1, () => _sceneFlowController.LoadNextLevel());
+        // DOVirtual.DelayedCall(1, () => _sceneFlowController.LoadNextLevel());
     }
 
     public void ManipulateTime(float t)
