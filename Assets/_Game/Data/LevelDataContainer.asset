@@ -19,3 +19,17 @@ MonoBehaviour:
     SceneName: Level 2
   - IsLoopable: 1
     SceneName: Level 3
+  - IsLoopable: 1
+    SceneName: Level 4
+  - IsLoopable: 1
+    SceneName: Level 5
+  - IsLoopable: 1
+    SceneName: Level 6
+  - IsLoopable: 1
+    SceneName: Level 7
+  - IsLoopable: 1
+    SceneName: Level 8
+  - IsLoopable: 1
+    SceneName: Level 9
+  - IsLoopable: 1
+    SceneName: Level 10
