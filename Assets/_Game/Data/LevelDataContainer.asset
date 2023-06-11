@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelDataContainer
   m_EditorClassIdentifier: 
   Levels:
-  - IsLoopable: 1
+  - IsLoopable: 0
     SceneName: Level 1
   - IsLoopable: 1
     SceneName: Level 2
